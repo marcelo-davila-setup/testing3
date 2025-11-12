@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adriana Sousa - Transformação Pessoal</title>
+    <!-- Preload das imagens críticas -->
+    <link rel="preload" as="image" href="https://pub-e40d9ad14e5a4e13b2bfe7e2ae67bb03.r2.dev/Adriana-vmake%20(1).png">
+    <link rel="preload" as="image" href="https://pub-e40d9ad14e5a4e13b2bfe7e2ae67bb03.r2.dev/Imagem%20do%20WhatsApp%20de%202025-09-23%20%C3%A0(s)%2015.21.04_61513830-vmake.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #F8F5F0;
+            --text: #33353A;
+            --accent: #D4AF37;
+            --dark: #1A2035;
+            --white: #ffffff;
+            --purple: #7C3AED;
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #FFD700 70%, #B8860B 100%);
+            --shadow-luxury: 0 15px 50px rgba(26, 32, 53, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #F8F5F0 0%, #E8E5E0 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 15px;
+            position: relative;
+        }
+
+        /* AVATAR SECTION - NORMAL MAS MAIOR */
+        .avatar-section {
+            text-align: center;
+            padding: 20px 15px 15px;
+            background: var(--white);
+            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-luxury);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            margin-top: 15px;
+            transition: all 1s ease;
+            min-height: 80vh;
+        }
+
+        .name {
+            font-size: 28px;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .specialty {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--purple);
+            margin-bottom: 20px;
+        }
+
+        .avatar-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            min-height: 500px;
+        }
+
+        .avatar {
+            width: 100%;
+            max-width: 350px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: var(--shadow-luxury);
+            transition: all 0.5s ease;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            will-change: transform;
+            pointer-events: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+        }
+
+        .avatar-message {
+            position: absolute;
+            top: 33%;
+            left: 65%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 200px;
+            font-size: 16px;
+            font-weight: 900;
+            color: var(--dark);
+            text-align: center;
+            opacity: 0;
+            transition: all 0.6s ease;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+            line-height: 1.3;
+            backdrop-filter: none;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .avatar-message.show {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .avatar-message.shock {
+            color: #DC2626;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        /* CTA SECTION BOTTOM - QUE FICOU TOP! */
+        .cta-section {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 30px 20px 40px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 70%, transparent 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            margin: 0;
+            opacity: 0;
+            transition: all 1s ease;
+            z-index: 20;
+        }
+
+        .cta-section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .cta-title {
+            font-size: 24px;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .cta-subtitle {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .cta-input {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            background: var(--white);
+            color: var(--text);
+            text-align: center;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 8px 35px rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gold-gradient);
+            color: var(--dark);
+            text-decoration: none;
+            padding: 18px 35px;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-luxury);
+            margin-bottom: 15px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.6);
+        }
+
+        .cta-disclaimer {
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .privacy-link {
+            margin: 8px 0 15px 0;
+            text-align: center;
+        }
+
+        .privacy-link a:hover {
+            color: #666;
+        }
+
+        /* TYPEBOT CONTAINER */
+        .typebot-embed-section {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+            background: var(--bg);
+        }
+
+        .typebot-container {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .avatar {
+                height: 450px;
+                max-width: 100%;
+            }
+            
+            .avatar-message {
+                width: 85%;
+                max-width: 180px;
+                font-size: 14px;
+                top: 30%;
+                left: 70%;
+                transform: translate(-50%, -50%);
+                line-height: 1.2;
+            }
+            
+            .avatar-message.shock {
+                font-size: 16px;
+            }
+            
+            .name {
+                font-size: 24px;
+            }
+            
+            .specialty {
+                font-size: 14px;
+            }
+
+            .cta-section {
+                padding: 25px 15px 30px;
+            }
+
+            .cta-title {
+                font-size: 20px;
+            }
+
+            .avatar-section {
+                min-height: 70vh;
+            }
+        }
+
+        @media (max-height: 600px) and (max-width: 480px) {
+            .avatar {
+                height: 350px;
+            }
+            
+            .avatar-message {
+                font-size: 13px;
+                top: 25%;
+                left: 75%;
+                transform: translate(-50%, -50%);
+                max-width: 160px;
+            }
+            
+            .name {
+                font-size: 20px;
+            }
+            
+            .specialty {
+                font-size: 12px;
+            }
+
+            .avatar-section {
+                min-height: 60vh;
+                padding: 15px 10px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- AVATAR SECTION -->
+        <section class="avatar-section" id="avatarSection">
+            <h1 class="name">Adriana Sousa</h1>
+            <p class="specialty">Especialista em Transformação Pessoal</p>
+            
+            <div class="avatar-container">
+                <img src="https://pub-e40d9ad14e5a4e13b2bfe7e2ae67bb03.r2.dev/Adriana-vmake%20(1).png" 
+                     alt="Adriana Sousa" 
+                     class="avatar" 
+                     id="mainAvatar">
+                <div class="avatar-message" id="avatarMessage">Olá...</div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="cta-section" id="ctaSection">
+            <h2 class="cta-title" id="ctaTitle">Como os que mais te AMAM te CHAMAM?</h2>
+            <p class="cta-subtitle" id="ctaSubtitle">Desenvolvimento pessoal personalizado</p>
+            
+            <input type="text" 
+                   class="cta-input" 
+                   id="userName" 
+                   placeholder="Digite seu nome aqui..."
+                   maxlength="50">
+            
+            <p class="privacy-link">
+                <a href="#privacy" style="color: #999; font-size: 11px; text-decoration: none;">Política de Privacidade</a>
+            </p>
+            
+            <small style="color: #ccc; font-size: 10px;">
+                ✓ Maiores de 18 anos | ✓ Certificada em Coaching
+            </small>
+            
+            <p class="cta-disclaimer" id="ctaDisclaimer"></p>
+        </section>
+
+        <!-- TYPEBOT EMBED SECTION -->
+        <section class="typebot-embed-section" id="typebotEmbedSection">
+            <div class="typebot-container" id="typebot-container">
+                <!-- Typebot será carregado aqui -->
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // ==================== CONTEXTOS DO BROWSER (META SAFE) ====================
+        
+        const BROWSER_CONTEXTS = {
+            getTimeMessage: function(hora, dispositivo) {
+                const agora = new Date();
+                const periodo = agora.getHours();
+                
+                if (periodo >= 5 && periodo < 12) {
+                    return `Manhã no seu ${dispositivo}`;
+                } else if (periodo >= 12 && periodo < 18) {
+                    return `Tarde no seu ${dispositivo}`;
+                } else if (periodo >= 18 && periodo < 23) {
+                    return `Noite no seu ${dispositivo}`;
+                } else {
+                    return `Madrugada no seu ${dispositivo}`;
+                }
+            },
+            
+            getDeviceMessage: function(dispositivo) {
+                const messages = {
+                    'iPhone': 'Que alegria, um iPhone! ✨',
+                    'iPad': 'Opa, um iPad! Perfeito! ✨',
+                    'Android': 'Android chegou! Que bom! ✨',
+                    'Mac': 'Mac na área! Adorei! ✨',
+                    'Computador': 'Computador ligado! Show! ✨'
+                };
+                return messages[dispositivo] || 'Que tecnologia bacana! ✨';
+            }
+        };
+
+        // ==================== CAPTURAR DADOS LOCAIS SEM API (META SAFE) ====================
+        
+        function capturarDadosLocaisSemAPI() {
+            try {
+                // HORÁRIO LOCAL (100% SEGURO)
+                const agora = new Date();
+                const hora = agora.getHours();
+                const minuto = agora.getMinutes();
+                const diaSemana = agora.getDay();
+                
+                const horaFormatada = `${hora}:${minuto.toString().padStart(2,'0')}`;
+                
+                const diasSemana = [
+                    'domingo', 'segunda-feira', 'terça-feira', 'quarta-feira',
+                    'quinta-feira', 'sexta-feira', 'sábado'
+                ];
+                const diaAtual = diasSemana[diaSemana];
+                
+                let parteDia;
+                if (hora >= 5 && hora < 12) parteDia = 'manhã';
+                else if (hora >= 12 && hora < 18) parteDia = 'tarde';
+                else if (hora >= 18 && hora < 23) parteDia = 'noite';
+                else parteDia = 'madrugada';
+
+                // DETECÇÃO DE ESTADO SEM API
+                const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                let estadoDetectado = 'BR';
+                
+                // Mapeamento básico e seguro
+                if (timezone.includes('Sao_Paulo') || timezone.includes('America/Sao_Paulo')) {
+                    estadoDetectado = 'SP';
+                } else if (timezone.includes('Manaus')) {
+                    estadoDetectado = 'AM';
+                } else if (timezone.includes('Recife')) {
+                    estadoDetectado = 'PE';
+                }
+
+                // Idioma do browser
+                const linguagem = navigator.language || navigator.userLanguage;
+                const brasileiro = linguagem.includes('pt-BR') || linguagem.includes('pt');
+
+                // UTM parameters (se vier de campanha)
+                const urlParams = new URLSearchParams(window.location.search);
+                const utmState = urlParams.get('utm_content');
+                if (utmState && utmState.length === 2) {
+                    estadoDetectado = utmState.toUpperCase();
+                }
+
+                return {
+                    hora: horaFormatada,
+                    dia: diaAtual,
+                    periodo: parteDia,
+                    estado: estadoDetectado,
+                    brasileiro: brasileiro,
+                    timezone: timezone,
+                    localidade: "Brasil"
+                };
+
+            } catch (error) {
+                console.error('Erro captura dados:', error);
+                
+                const agora = new Date();
+                return {
+                    hora: `${agora.getHours()}:${agora.getMinutes().toString().padStart(2,'0')}`,
+                    dia: 'hoje',
+                    periodo: 'dia',
+                    estado: 'BR',
+                    brasileiro: true,
+                    localidade: "Brasil"
+                };
+            }
+        }
+
+        function detectBrowserData() {
+            const agora = new Date();
+            const hora = agora.getHours();
+            const minuto = agora.getMinutes();
+            const dia = agora.getDay();
+            
+            // Detecção do dispositivo (sem conexão)
+            const userAgent = navigator.userAgent;
+            let dispositivo = "Computador";
+            if (userAgent.includes('iPhone')) dispositivo = "iPhone";
+            else if (userAgent.includes('iPad')) dispositivo = "iPad";
+            else if (userAgent.includes('Android')) dispositivo = "Android";
+            else if (userAgent.includes('Mac')) dispositivo = "Mac";
+            else if (userAgent.includes('Windows')) dispositivo = "Computador";
+            
+            // Detecção se é brasileiro
+            const brasileiro = navigator.language.includes('pt-BR') || navigator.language.includes('pt');
+            
+            // Dia da semana
+            const diasSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+            const diaNome = diasSemana[dia];
+            
+            return {
+                hora,
+                minuto,
+                dia: diaNome,
+                dispositivo,
+                brasileiro,
+                horaFormatada: `${hora.toString().padStart(2, '0')}:${minuto.toString().padStart(2, '0')}`
+            };
+        }
+
+        // ==================== SEQUÊNCIA DO AVATAR ====================
+        
+        function startAvatarSequence() {
+            const message = document.getElementById('avatarMessage');
+            
+            // Detectar dados do navegador (sem APIs)
+            const browserData = detectBrowserData();
+            
+            // IMPLEMENTAÇÃO META SAFE: Capturar dados locais
+            const dadosLocais = capturarDadosLocaisSemAPI();
+            window.currentLocation = dadosLocais;
+            
+            // Obter mensagens personalizadas baseadas no navegador
+            const timeMessage = BROWSER_CONTEXTS.getTimeMessage(browserData.hora, browserData.dispositivo);
+            const deviceMessage = BROWSER_CONTEXTS.getDeviceMessage(browserData.dispositivo);
+            
+            // Detectar se é brasileiro para personalizar CTA
+            const brasileiro = browserData.brasileiro;
+            
+            // Sequência de 4 mensagens quebradas e mais curtas
+            const messages = [
+                "Oie para você! 👋",                                   // 1. Saudação super calorosa
+                `${dadosLocais.hora}\né boa ${dadosLocais.periodo}! ☀️`, // 2. Hora quebrada em 2 linhas
+                "Como vai?\nQue bom ter você aqui! 💕",                 // 3. Quebrado em 2 linhas
+                brasileiro ? "Bora conversar\nabaixo? 👇" : "Let's chat\nbelow? 👇" // 4. CTA quebrado
+            ];
+
+            // Executar sequência
+            executarSequenciaAvatar(message, messages);
+        }
+
+        async function executarSequenciaAvatar(message, messages) {
+            for (let i = 0; i < messages.length; i++) {
+                message.classList.remove('show');
+                await sleep(200);
+                
+                message.innerHTML = messages[i].replace(/\n/g, '<br>');
+                message.classList.add('show');
+                
+                // Destaque especial na mensagem do dispositivo (índice 2)
+                if (i === 2) message.classList.add('shock');
+                
+                // Timing: 2.2s para cada mensagem (mais rápido)
+                await sleep(2200);
+            }
+
+            // Mostrar CTA após sequência (mais rápido)
+            setTimeout(() => showCTA(window.currentLocation), 500);
+        }
+
+        function showCTA(location) {
+            const ctaSection = document.getElementById('ctaSection');
+            const ctaTitle = document.getElementById('ctaTitle');
+            const ctaSubtitle = document.getElementById('ctaSubtitle');
+            const ctaDisclaimer = document.getElementById('ctaDisclaimer');
+            const userName = document.getElementById('userName');
+            
+            // Detectar se é brasileiro
+            const brasileiro = navigator.language.includes('pt-BR') || navigator.language.includes('pt');
+            
+            // Atualizar textos do CTA
+            ctaTitle.textContent = brasileiro ? "Como os que mais te AMAM te CHAMAM?" : "What's your name?";
+            ctaSubtitle.textContent = brasileiro ? "Desenvolvimento pessoal personalizado" : "Personalized personal development";
+            ctaDisclaimer.textContent = "";
+            
+            // Simplificar placeholder do input
+            userName.placeholder = brasileiro ? "Digite seu nome aqui..." : "Type your name here...";
+            
+            // Captura automática do nome - incorpora Typebot quando digitar
+            userName.addEventListener('input', function() {
+                const nome = this.value.trim();
+                if (nome.length >= 2) { // Mínimo 2 caracteres
+                    // Pequeno delay para dar tempo de terminar de digitar
+                    clearTimeout(window.nameTimeout);
+                    window.nameTimeout = setTimeout(() => {
+                        if (nome.length >= 2) {
+                            embedTypebotMetaSafe(nome);
+                        }
+                    }, 1500); // 1.5 segundos - meio termo ideal
+                }
+            });
+            
+            // Enter no input também incorpora Typebot
+            userName.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const nome = this.value.trim();
+                    if (nome.length >= 2) {
+                        embedTypebotMetaSafe(nome);
+                    }
+                }
+            });
+            
+            ctaSection.classList.add('active');
+            
+            // Scroll automático imediato e suave
+            setTimeout(() => {
+                ctaSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center' 
+                });
+            }, 200);
+            
+            // Focar no input após scroll
+            setTimeout(() => {
+                userName.focus();
+            }, 600);
+        }
+
+        // ==================== EMBED DO TYPEBOT META SAFE ====================
+        
+        function embedTypebotMetaSafe(nome) {
+            // Esconder TODA a landing page
+            const avatarSection = document.getElementById('avatarSection');
+            const ctaSection = document.getElementById('ctaSection');
+            avatarSection.style.display = 'none';
+            ctaSection.style.display = 'none';
+            
+            // Mostrar Typebot em fullscreen
+            const typebotEmbedSection = document.getElementById('typebotEmbedSection');
+            typebotEmbedSection.style.display = 'block';
+            
+            // Capturar dados locais seguros (SEM APIS)
+            const dadosLocais = window.currentLocation || capturarDadosLocaisSemAPI();
+            
+            // Construir URL com dados locais seguros
+            const params = new URLSearchParams({
+                nome: nome,
+                localidade: dadosLocais.localidade,
+                hora: dadosLocais.hora,
+                dia: dadosLocais.dia,
+                periodo: dadosLocais.periodo,
+                estado: dadosLocais.estado,
+                brasileiro: dadosLocais.brasileiro,
+                fonte: 'landing-meta-safe'
+            });
+            
+            const typebotUrl = `https://bot.adrianasousa.com/eu?${params.toString()}`;
+            
+            console.log('📊 Dados Meta Safe enviados:', dadosLocais);
+            
+            // Criar iframe fullscreen
+            const typebotContainer = document.getElementById('typebot-container');
+            typebotContainer.innerHTML = `
+                <iframe 
+                    src="${typebotUrl}"
+                    style="width: 100%; height: 100%; border: none;"
+                    frameborder="0"
+                    allow="camera; microphone"
+                    loading="lazy">
+                </iframe>
+            `;
+            
+            // SEM scroll - já está fullscreen
+        }
+
+        // ==================== FUNÇÕES LEGACY (COMPATIBILIDADE) ====================
+        
+        function startTypebotWithName() {
+            const nome = document.getElementById('userName').value.trim();
+            
+            if (nome && nome.length >= 2) {
+                embedTypebotMetaSafe(nome);
+            } else {
+                const brasileiro = navigator.language.includes('pt-BR') || navigator.language.includes('pt');
+                alert(brasileiro ? 'Por favor, digite seu nome primeiro!' : 'Please type your name first!');
+            }
+        }
+        
+        function startTypebot() {
+            startTypebotWithName();
+        }
+
+        function embedTypebot(nome) {
+            embedTypebotMetaSafe(nome);
+        }
+
+        // ==================== UTILITÁRIOS ====================
+        
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // ==================== INICIALIZAÇÃO ====================
+        
+        // Preload de imagens
+        const preloadImages = () => {
+            const imageUrls = [
+                'https://pub-e40d9ad14e5a4e13b2bfe7e2ae67bb03.r2.dev/Adriana-vmake%20(1).png',
+                'https://pub-e40d9ad14e5a4e13b2bfe7e2ae67bb03.r2.dev/Imagem%20do%20WhatsApp%20de%202025-09-23%20%C3%A0(s)%2015.21.04_61513830-vmake.jpg'
+            ];
+            
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+        };
+        
+        // Iniciar aplicação
+        preloadImages();
+        
+        setTimeout(() => {
+            startAvatarSequence();
+        }, 1000);
+        
+    </script>
+</body>
+</html>
